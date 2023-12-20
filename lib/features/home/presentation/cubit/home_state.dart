@@ -1,3 +1,8 @@
 part of 'home_cubit.dart';
 
-class HomeState {}
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    @Default(false) bool isLoading,
+  }) = _HomeState;
+}
