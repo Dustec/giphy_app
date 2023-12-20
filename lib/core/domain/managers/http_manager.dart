@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 abstract interface class HttpManager {
   Future<HttpResponse> get(
     String url, {
@@ -32,6 +34,7 @@ extension HttpManagerEx on Future<HttpResponse> {
         yield parsedObject;
       }
     } catch (e) {
+      debugPrint(e.toString());
       rethrow;
     }
   }

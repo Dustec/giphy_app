@@ -19,10 +19,17 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
   final GiphyRepository _giphyRepository;
 
   _init() {
-    _giphyRepository.getGiphs().listen((giphs) {
-      emit(state.copyWith(giphs: giphs));
-    }, onError: (error) {
-      debugPrint(error.toString());
-    }).dispose(this);
+    emit(state.copyWith(isLoading: true));
+    _giphyRepository.getGiphs().listen(
+      (giphs) {
+        emit(state.copyWith(giphs: giphs));
+      },
+      onError: (error) {
+        debugPrint(error.toString());
+      },
+      onDone: () {
+        emit(state.copyWith(isLoading: false));
+      },
+    ).dispose(this);
   }
 }

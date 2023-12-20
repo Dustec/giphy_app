@@ -8,6 +8,7 @@ class HttpDataManager implements HttpManager {
   HttpDataManager() {
     _dio = Dio(
       BaseOptions(
+          baseUrl: Environment.baseUrl,
           contentType: 'application/json; charset=UTF-8',
           receiveTimeout: const Duration(seconds: 30),
           sendTimeout: const Duration(seconds: 30),
