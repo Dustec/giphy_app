@@ -10,26 +10,31 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeCubit cubit = context.read<HomeCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Giphy App'),
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          if (state.isLoading) {
+          if (state.giphs.isEmpty && state.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          return MasonryGridView.builder(
-            itemCount: state.giphs.length,
-            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+          return RefreshIndicator.adaptive(
+            onRefresh: cubit.onRefresh,
+            child: MasonryGridView.builder(
+              itemCount: state.giphs.length,
+              gridDelegate:
+                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return GifCard(state.giphs[index]);
+              },
             ),
-            itemBuilder: (BuildContext context, int index) {
-              return GifCard(state.giphs[index]);
-            },
           );
         },
       ),
