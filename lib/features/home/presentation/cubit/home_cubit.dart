@@ -15,16 +15,21 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
     required GiphyRepository giphyRepository,
   })  : _giphyRepository = giphyRepository,
         super(const HomeState()) {
-    _init();
+    getGifs();
   }
 
   final GiphyRepository _giphyRepository;
 
-  _init({
+  getGifs({
+    String? searchText,
     void Function()? onDone,
   }) {
     emit(state.copyWith(isLoading: true));
-    _giphyRepository.getGiphs().listen(
+    _giphyRepository
+        .getGiphs(
+      searchText: searchText,
+    )
+        .listen(
       (giphs) {
         emit(state.copyWith(giphs: giphs));
       },
@@ -40,7 +45,7 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
 
   Future<void> onRefresh() async {
     final Completer<void> completer = Completer<void>();
-    _init(
+    getGifs(
       onDone: () {
         completer.complete();
       },
