@@ -17,9 +17,23 @@ class GiphyRemoteSource with GiphyApi implements GiphySource {
   @override
   Stream<List<GifModel>> getGiphs({
     String? searchText,
+    int? offset,
+    int? limit,
   }) async* {
-    yield* http
-        .get(Uri.https(baseUrl, '/v1/gifs/trending').toString())
+    yield* ((searchText ?? '').isEmpty
+            ? http.get(
+                Uri.https(baseUrl, '/v1/gifs/trending').toString(),
+                queryParams: GifRequestQueriesDto(
+                  offset: offset,
+                  limit: limit,
+                ).toJson(),
+              )
+            : http.get(Uri.https(baseUrl, '/v1/gifs/search').toString(),
+                queryParams: GifRequestQueriesDto(
+                  q: searchText,
+                  offset: offset,
+                  limit: limit,
+                ).toJson()))
         .handle(mapper: (json) => GifRequestDto.fromJson(json))
         .map((dto) => dto.data?.map((e) => giphMapper.map(e)).toList() ?? []);
   }

@@ -11,9 +11,13 @@ class GiphDataRepository implements GiphyRepository {
   @override
   Stream<List<GifModel>> getGiphs({
     String? searchText,
+    int? offset,
+    int? limit,
   }) async* {
     yield* remoteSource.getGiphs(
       searchText: searchText,
+      offset: offset,
+      limit: limit,
     );
   }
 }

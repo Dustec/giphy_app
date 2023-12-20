@@ -4,6 +4,24 @@ import 'package:giphy_app/features/giph/data/models/gif_dto.dart';
 part 'gif_request_dto.g.dart';
 
 @JsonSerializable()
+class GifRequestQueriesDto {
+  const GifRequestQueriesDto({
+    this.q,
+    required this.offset,
+    required this.limit,
+  });
+
+  @JsonKey(includeIfNull: false)
+  final String? q;
+  @JsonKey(includeIfNull: false)
+  final int? offset;
+  @JsonKey(includeIfNull: false)
+  final int? limit;
+
+  Map<String, dynamic> toJson() => _$GifRequestQueriesDtoToJson(this);
+}
+
+@JsonSerializable()
 class GifRequestDto {
   const GifRequestDto({
     required this.data,

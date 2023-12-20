@@ -6,6 +6,30 @@ part of 'gif_request_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+GifRequestQueriesDto _$GifRequestQueriesDtoFromJson(
+        Map<String, dynamic> json) =>
+    GifRequestQueriesDto(
+      q: json['q'] as String?,
+      offset: json['offset'] as int?,
+      limit: json['limit'] as int?,
+    );
+
+Map<String, dynamic> _$GifRequestQueriesDtoToJson(
+    GifRequestQueriesDto instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('q', instance.q);
+  writeNotNull('offset', instance.offset);
+  writeNotNull('limit', instance.limit);
+  return val;
+}
+
 GifRequestDto _$GifRequestDtoFromJson(Map<String, dynamic> json) =>
     GifRequestDto(
       data: (json['data'] as List<dynamic>?)
