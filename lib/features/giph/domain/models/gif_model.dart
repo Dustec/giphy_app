@@ -35,14 +35,14 @@ class GifModel {
   final String source;
   final String rating;
   final String contentUrl;
-  final UserModel user;
+  final UserModel? user;
   final String sourceTId;
   final String sourcePostUrl;
   final DateTime updateDateTime;
   final DateTime createDateTime;
   final DateTime importDateTime;
   final DateTime trendingDateTime;
-  final ImagesModel images;
+  final ImagesModel? images;
   final String title;
   final String altText;
 }

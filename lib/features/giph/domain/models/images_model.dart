@@ -22,11 +22,11 @@ class ImagesModel {
     required this.preview,
     required this.previewGif,
     required this.previewWebp,
-    required this.fourHundrerEightyWStill,
+    required this.fourHundredEightyWStill,
   });
 
-  final ImageData original;
-  final ImageData downsized;
+  final ImageData? original;
+  final ImageData? downsized;
   final ImageData? downsizedLarge;
   final ImageData? downsizedMedium;
   final ImageData? downsizedSmall;
@@ -47,7 +47,7 @@ class ImagesModel {
   final ImageData? preview;
   final ImageData? previewGif;
   final ImageData? previewWebp;
-  final ImageData? fourHundrerEightyWStill;
+  final ImageData? fourHundredEightyWStill;
 }
 
 class ImageData {

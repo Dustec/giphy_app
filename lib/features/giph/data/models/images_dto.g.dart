@@ -86,7 +86,7 @@ ImagesDto _$ImagesDtoFromJson(Map<String, dynamic> json) => ImagesDto(
       previewWebp: json['preview_webp'] == null
           ? null
           : ImageDataDto.fromJson(json['preview_webp'] as Map<String, dynamic>),
-      fourHundrerEightyWStill: json['480w_still'] == null
+      fourHundredEightyWStill: json['480w_still'] == null
           ? null
           : ImageDataDto.fromJson(json['480w_still'] as Map<String, dynamic>),
     );
@@ -114,19 +114,19 @@ Map<String, dynamic> _$ImagesDtoToJson(ImagesDto instance) => <String, dynamic>{
       'preview': instance.preview,
       'preview_gif': instance.previewGif,
       'preview_webp': instance.previewWebp,
-      '480w_still': instance.fourHundrerEightyWStill,
+      '480w_still': instance.fourHundredEightyWStill,
     };
 
 ImageDataDto _$ImageDataDtoFromJson(Map<String, dynamic> json) => ImageDataDto(
-      height: (json['height'] as num?)?.toDouble(),
-      width: (json['width'] as num?)?.toDouble(),
-      size: (json['size'] as num?)?.toDouble(),
+      height: json['height'] as String?,
+      width: json['width'] as String?,
+      size: json['size'] as String?,
       url: json['url'] as String?,
-      mp4Size: (json['mp4_size'] as num?)?.toDouble(),
+      mp4Size: json['mp4_size'] as String?,
       mp4Url: json['mp4_url'] as String?,
       webpSize: json['webp_size'] as String?,
       webpUrl: json['webp_url'] as String?,
-      frames: json['frames'] as int?,
+      frames: json['frames'] as String?,
       hash: json['hash'] as String?,
     );
 

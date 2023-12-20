@@ -27,7 +27,7 @@ class ImagesDto {
     this.preview,
     this.previewGif,
     this.previewWebp,
-    this.fourHundrerEightyWStill,
+    this.fourHundredEightyWStill,
   });
 
   final ImageDataDto? original;
@@ -71,7 +71,7 @@ class ImagesDto {
   @JsonKey(name: 'preview_webp')
   final ImageDataDto? previewWebp;
   @JsonKey(name: '480w_still')
-  final ImageDataDto? fourHundrerEightyWStill;
+  final ImageDataDto? fourHundredEightyWStill;
 
   factory ImagesDto.fromJson(Map<String, dynamic> json) =>
       _$ImagesDtoFromJson(json);
@@ -92,19 +92,19 @@ class ImageDataDto {
     this.hash,
   });
 
-  final double? height;
-  final double? width;
-  final double? size;
+  final String? height;
+  final String? width;
+  final String? size;
   final String? url;
   @JsonKey(name: 'mp4_size')
-  final double? mp4Size;
+  final String? mp4Size;
   @JsonKey(name: 'mp4_url')
   final String? mp4Url;
   @JsonKey(name: 'webp_size')
   final String? webpSize;
   @JsonKey(name: 'webp_url')
   final String? webpUrl;
-  final int? frames;
+  final String? frames;
   final String? hash;
 
   factory ImageDataDto.fromJson(Map<String, dynamic> json) =>
