@@ -15,7 +15,7 @@ class GifSearchDelegate extends SearchDelegate {
         icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
-          cubit.getGifs(searchText: '');
+          cubit.handleSubmitSearch('');
         },
       ),
     ];
@@ -26,7 +26,7 @@ class GifSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        cubit.getGifs(searchText: '');
+        cubit.handleSubmitSearch('');
         Navigator.of(context).pop();
       },
     );
@@ -36,7 +36,15 @@ class GifSearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       bloc: cubit,
-      builder: (context, state) => GifGrid(state.giphs),
+      builder: (context, state) {
+        if (state.giphs.isEmpty && state.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        return GifGrid(state.giphs);
+      },
     );
   }
 
@@ -48,6 +56,6 @@ class GifSearchDelegate extends SearchDelegate {
   @override
   void showResults(BuildContext context) {
     super.showResults(context);
-    cubit.getGifs(searchText: query);
+    cubit.handleSubmitSearch(query);
   }
 }

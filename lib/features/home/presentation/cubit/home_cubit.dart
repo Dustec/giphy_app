@@ -52,4 +52,9 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
     );
     return completer.future;
   }
+
+  void handleSubmitSearch(String searchText) {
+    emit(state.copyWith(giphs: []));
+    getGifs(searchText: searchText);
+  }
 }
