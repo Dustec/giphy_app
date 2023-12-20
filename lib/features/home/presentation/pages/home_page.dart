@@ -23,6 +23,12 @@ class HomePage extends StatelessWidget {
             );
           }
 
+          if (state.giphs.isEmpty) {
+            return const Center(
+              child: Text('No items found'),
+            );
+          }
+
           return RefreshIndicator.adaptive(
             onRefresh: cubit.onRefresh,
             child: GifGrid(state.giphs),

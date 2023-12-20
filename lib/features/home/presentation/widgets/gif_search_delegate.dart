@@ -43,6 +43,12 @@ class GifSearchDelegate extends SearchDelegate {
           );
         }
 
+        if (state.giphs.isEmpty) {
+          return const Center(
+            child: Text('No items found. Try search something else.'),
+          );
+        }
+
         return GifGrid(state.giphs);
       },
     );
