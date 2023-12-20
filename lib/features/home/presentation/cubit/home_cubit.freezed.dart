@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
+  List<GifModel> get giphs => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<GifModel> giphs});
 }
 
 /// @nodoc
@@ -45,12 +46,17 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? giphs = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      giphs: null == giphs
+          ? _value.giphs
+          : giphs // ignore: cast_nullable_to_non_nullable
+              as List<GifModel>,
     ) as $Val);
   }
 }
@@ -63,7 +69,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, List<GifModel> giphs});
 }
 
 /// @nodoc
@@ -78,12 +84,17 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? giphs = null,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      giphs: null == giphs
+          ? _value._giphs
+          : giphs // ignore: cast_nullable_to_non_nullable
+              as List<GifModel>,
     ));
   }
 }
@@ -91,15 +102,25 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({this.isLoading = false});
+  const _$HomeStateImpl(
+      {this.isLoading = false, final List<GifModel> giphs = const <GifModel>[]})
+      : _giphs = giphs;
 
   @override
   @JsonKey()
   final bool isLoading;
+  final List<GifModel> _giphs;
+  @override
+  @JsonKey()
+  List<GifModel> get giphs {
+    if (_giphs is EqualUnmodifiableListView) return _giphs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_giphs);
+  }
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading)';
+    return 'HomeState(isLoading: $isLoading, giphs: $giphs)';
   }
 
   @override
@@ -108,11 +129,13 @@ class _$HomeStateImpl implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._giphs, _giphs));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, const DeepCollectionEquality().hash(_giphs));
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +145,13 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final bool isLoading}) = _$HomeStateImpl;
+  const factory _HomeState({final bool isLoading, final List<GifModel> giphs}) =
+      _$HomeStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  List<GifModel> get giphs;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
