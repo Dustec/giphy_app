@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:giphy_app/core/domain/mixins/disposable.dart';
 import 'package:giphy_app/features/giph/domain/models/gif_model.dart';
 import 'package:giphy_app/features/giph/domain/repositories/giphy_repository.dart';
 
 part 'home_state.dart';
 part 'home_cubit.freezed.dart';
 
-class HomeCubit extends Cubit<HomeState> with Disposable {
+class HomeCubit extends Cubit<HomeState> {
   HomeCubit({
     required GiphyRepository giphyRepository,
   })  : _giphyRepository = giphyRepository,
@@ -20,12 +19,21 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
 
   final GiphyRepository _giphyRepository;
 
+  StreamSubscription? _gifsSubscription;
+
+  @override
+  Future<void> close() {
+    _gifsSubscription = null;
+    return super.close();
+  }
+
   getGifs({
     String? searchText,
     void Function()? onDone,
   }) {
     emit(state.copyWith(isLoading: true));
-    _giphyRepository
+    _gifsSubscription?.cancel();
+    _gifsSubscription = _giphyRepository
         .getGiphs(
       searchText: searchText,
     )
@@ -40,7 +48,7 @@ class HomeCubit extends Cubit<HomeState> with Disposable {
         emit(state.copyWith(isLoading: false));
         onDone?.call();
       },
-    ).dispose(this);
+    );
   }
 
   Future<void> onRefresh() async {
