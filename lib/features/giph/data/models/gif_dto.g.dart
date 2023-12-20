@@ -65,15 +65,3 @@ Map<String, dynamic> _$GifDtoToJson(GifDto instance) => <String, dynamic>{
       'title': instance.title,
       'alt_text': instance.altText,
     };
-
-GifRequestDto _$GifRequestDtoFromJson(Map<String, dynamic> json) =>
-    GifRequestDto(
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => GifDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$GifRequestDtoToJson(GifRequestDto instance) =>
-    <String, dynamic>{
-      'data': instance.data,
-    };

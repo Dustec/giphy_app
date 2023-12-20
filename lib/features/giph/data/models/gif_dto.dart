@@ -65,15 +65,3 @@ class GifDto {
 
   factory GifDto.fromJson(Map<String, dynamic> json) => _$GifDtoFromJson(json);
 }
-
-@JsonSerializable()
-class GifRequestDto {
-  const GifRequestDto({
-    required this.data,
-  });
-
-  final List<GifDto>? data;
-
-  factory GifRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$GifRequestDtoFromJson(json);
-}
