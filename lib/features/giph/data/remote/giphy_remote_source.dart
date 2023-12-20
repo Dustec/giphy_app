@@ -19,7 +19,7 @@ class GiphyRemoteSource with GiphyApi implements GiphySource {
     String? searchText,
   }) async* {
     yield* http
-        .get('/v1/gifs/trending')
+        .get(Uri.https(baseUrl, '/v1/gifs/trending').toString())
         .handle(mapper: (json) => GifRequestDto.fromJson(json))
         .map((dto) => dto.data?.map((e) => giphMapper.map(e)).toList() ?? []);
   }
